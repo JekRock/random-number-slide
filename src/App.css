@@ -1,0 +1,21 @@
+.control {
+  /* visibility: hidden; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+  /* z-index: 1; */
+}
+
+.control:hover {
+  /* visibility: visible; */
+  opacity: 0.5;
+  cursor: auto;
+}
