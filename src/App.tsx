@@ -20,7 +20,7 @@ function generateRandomNonRepeatingNumbers(min: number, max: number): Array<numb
 
 function App() {
   const [min, setMin] = useState(1);
-  const [max, setMax] = useState(100);
+  const [max, setMax] = useState(110);
   const [backgroundColor, setBackgroundColor] = useState('green');
   const [numberColor, setNumberColor] = useState('yellow');
   const [numberSize, setNumberSize] = useState(3);
