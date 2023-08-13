@@ -30,6 +30,43 @@ function App() {
   const [nonRepeatingNumbers, setNonRepeatingNumbers] = useState<Array<number>>(() => generateRandomNonRepeatingNumbers(min, max));
   const [showEmoji, setShowEmoji] = useState(false);
 
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Function to toggle fullscreen
+  const toggleFullscreen = () => {
+    const doc = window.document as any;
+    const docEl = doc.documentElement as any;
+
+    const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    const exitFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+    if (!isFullscreen) {
+      if (requestFullScreen) {
+        requestFullScreen.call(docEl);
+      }
+    } else {
+      if (exitFullScreen) {
+        exitFullScreen.call(doc);
+      }
+    }
+    setIsFullscreen(!isFullscreen);
+  };
+
+  // Event listener to toggle fullscreen on "f" key press
+  useEffect(() => {
+    const handleKeyPress = (event:any) => {
+      if (event.key === 'f') {
+        toggleFullscreen();
+      }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isFullscreen]);
+
   const iterationCountRef = React.useRef(iterationCount);
   iterationCountRef.current = iterationCount;
 
